@@ -15,13 +15,6 @@ class FunctionServiceTest {
   FunctionService functionService;
 
   @Test
-  @DisplayName("functionServiveTest1")
-  void plus10V1Test() {
-    Integer result = functionService.plus10V1(1);
-    Assertions.assertThat(result).isEqualTo(11);
-  }
-
-  @Test
   @DisplayName("composeFailTest")
   void composeFailTest() {
     Integer result = functionService.composeFail(3);

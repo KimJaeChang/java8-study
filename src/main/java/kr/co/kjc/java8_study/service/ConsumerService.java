@@ -1,7 +1,7 @@
 package kr.co.kjc.java8_study.service;
 
 import java.util.function.Consumer;
-import kr.co.kjc.java8_study.global.custom_interface.java_function.ConsumerExample;
+import kr.co.kjc.java8_study.custom_interface.java_function.ConsumerExample;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

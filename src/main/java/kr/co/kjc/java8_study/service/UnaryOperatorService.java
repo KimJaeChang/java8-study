@@ -2,8 +2,8 @@ package kr.co.kjc.java8_study.service;
 
 import java.util.function.UnaryOperator;
 import kr.co.kjc.java8_study.global.config.common.CommonConstant;
-import kr.co.kjc.java8_study.global.custom_interface.java_function.UnaryOperatorMultiply;
-import kr.co.kjc.java8_study.global.custom_interface.java_function.UnaryOperatorPlus;
+import kr.co.kjc.java8_study.custom_interface.java_function.UnaryOperatorMultiply;
+import kr.co.kjc.java8_study.custom_interface.java_function.UnaryOperatorPlus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
