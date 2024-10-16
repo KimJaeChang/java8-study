@@ -24,8 +24,7 @@ public class DataTransferV1Dto {
   @ToString
   public static abstract class MessageFields {
 
-//    @Getter
-//    @NoArgsConstructor
+    @Getter
     @ToString
     public static class ChargerMessageFields extends DataTransferV1Dto.MessageFields {
       private String chargerModel;
@@ -41,8 +40,7 @@ public class DataTransferV1Dto {
 
     }
 
-//    @Getter
-//    @NoArgsConstructor
+    @Getter
     @ToString
     public static class MemberMessageFields extends DataTransferV1Dto.MessageFields {
       private String uuid;

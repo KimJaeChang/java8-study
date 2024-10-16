@@ -8,6 +8,7 @@ import java.util.UUID;
 import kr.co.kjc.java8_study.enums.EnumDataTransferType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.ToString;
 
 @Data
@@ -23,6 +24,7 @@ public class DataTransferV2Dto {
 
   }
 
+  @Getter
   @ToString
   public static class ChargerMessageFields implements DataTransferV2Dto.MessageFields {
     private String chargerModel;
@@ -38,6 +40,7 @@ public class DataTransferV2Dto {
 
   }
 
+  @Getter
   @ToString
   public static class MemberMessageFields implements DataTransferV2Dto.MessageFields {
     private String uuid;
