@@ -96,7 +96,7 @@
     + 본인이 수정할 수 있는 인터페이스에만 기본 메소드를 제공할 수 있다.
     + 인터페이스를 상속받는 인터페이스에서 다시 추상 메소드로 변경할 수 있다.
       + <span style="color:red"><U>**구현한 클래스에서의 인터페이스 메소드가 겹치면 Compile Error가 발생한다.**</U></span>
-        + <span style="color:yellow"><U>**구현클래스에선 @Override 필수!!**</U></span>
+        + <span style="color:yellow"><U>**해결 방법 : 구현클래스에선 @Override 필수!!**</U></span>
       + > Bar.class 의 printNameUpperCase() 메소드 참고
     + 인터페이스 구현체가 재정의 할 수도 있다.
   + 스태틱 메소드 (Static Methods)
