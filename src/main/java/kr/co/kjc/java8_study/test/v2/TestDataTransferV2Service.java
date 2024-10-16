@@ -40,8 +40,6 @@ public class TestDataTransferV2Service {
     DataTransferV2Dto result = new DataTransferV2Dto("99999806", "test-vendor", enumDataTransferType, messageFields);
     String json = om.writeValueAsString(result);
 
-    System.out.println("json : " + json);
-
     return (JSONObject) jsonParser.parse(json);
   }
 
