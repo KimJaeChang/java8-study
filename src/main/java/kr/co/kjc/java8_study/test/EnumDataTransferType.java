@@ -1,4 +1,4 @@
-package kr.co.kjc.java8_study.enums;
+package kr.co.kjc.java8_study.test;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

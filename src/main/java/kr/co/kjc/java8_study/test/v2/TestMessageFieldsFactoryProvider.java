@@ -2,7 +2,7 @@ package kr.co.kjc.java8_study.test.v2;
 
 import java.util.Map;
 import java.util.Optional;
-import kr.co.kjc.java8_study.enums.EnumDataTransferType;
+import kr.co.kjc.java8_study.test.EnumDataTransferType;
 
 public class TestMessageFieldsFactoryProvider {
 

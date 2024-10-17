@@ -1,15 +1,14 @@
-package kr.co.kjc.java8_study.dtos;
+package kr.co.kjc.java8_study.test.v1;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import kr.co.kjc.java8_study.enums.EnumDataTransferType;
+import kr.co.kjc.java8_study.test.EnumDataTransferType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
