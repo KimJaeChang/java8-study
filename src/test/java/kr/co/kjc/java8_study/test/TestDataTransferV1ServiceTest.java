@@ -1,8 +1,7 @@
 package kr.co.kjc.java8_study.test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import kr.co.kjc.java8_study.dtos.DataTransferV1Dto;
-import kr.co.kjc.java8_study.enums.EnumDataTransferType;
+import kr.co.kjc.java8_study.test.v1.DataTransferV1Dto;
 import kr.co.kjc.java8_study.test.v1.TestDataTransferV1Service;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
