@@ -6,14 +6,21 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@Builder
 public class OnlineClassDto {
 
   private Integer id;
   private String title;
   private Boolean closed;
+  public ProgressDto progressDto;
 
-  @Builder
   public OnlineClassDto(Integer id, String title, Boolean closed) {
+    this.id = id;
+    this.title = title;
+    this.closed = closed;
+  }
+
+  public OnlineClassDto(Integer id, String title, Boolean closed, ProgressDto progressDto) {
     this.id = id;
     this.title = title;
     this.closed = closed;
@@ -27,4 +34,12 @@ public class OnlineClassDto {
         .build();
   }
 
+  public static OnlineClassDto ofV2(Integer id, String title, Boolean closed, ProgressDto progressDto) {
+    return OnlineClassDto.builder()
+        .id(id)
+        .title(title)
+        .closed(closed)
+        .progressDto(progressDto)
+        .build();
+  }
 }
