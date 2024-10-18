@@ -213,7 +213,7 @@
   + Optional map(Function)
   + Optional flatMap(Function): Optional 안에 들어있는 인스턴스가 Optional인 경우에 사용하면 편리하다.
 
-### Date와 Time API
+### Date와 Time API - 1
   + 자바 8에 새로운 날짜와 시간 API가 생긴 이유
     + 그전까지 사용하던 java.util.Date 클래스는 mutable 하기 때문에 thread safe하지 않다.
     + 클래스 이름이 명확하지 않다. Date인데 시간까지 다룬다.
@@ -237,3 +237,36 @@
     
     + 참고
       + https://codeblog.jonskeet.uk/2017/04/23/all-about-java-util-date/
+      
+### Date와 Time API - 2
+  + 지금 이 순간을 기계 시간으로 표현하는 방법
+    + Instant.now(): 
+    + Universal Time Coordinated == Greenwich Mean Time
+    + Instant now = Instant.now();
+      + 현재 UTC (GMT)를 리턴한다.
+    + ZonedDateTime seoul = now.atZone(ZoneId.of("Asia/Seoul"));
+      + ZondId로 "Asia/Seoul" 설정
+    + ZonedDateTime zonedDateTime = now.atZone(ZoneId.systemDefault());
+  + 인류용 일시를 표현하는 방법
+    + LocalDateTime.now(): 현재 시스템 Zone에 해당하는(로컬) 일시를 리턴한다.
+    + LocalDateTime.of(int, Month, int, int, int, int): 로컬의 특정 일시를 리턴한다.
+    + ZonedDateTime.of(int, Month, int, int, int, int, ZoneId): 특정 Zone의 특정 일시를 리턴한다.
+  + 기간을 표현하는 방법
+    + Period / Duration . beteen()
+    + Period between = Period.between(today, birthDay);
+    + System.out.println(between.get(ChronoUnit.DAYS));
+  + 파싱 또는 포매팅
+    + 미리 정의해둔 포맷 참고
+      + https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#pre
+    + defined
+    + LocalDateTime.parse(String, DateTimeFormatter);
+    + Dateteme
+    + DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+    + LocalDate date = LocalDate.parse("07/15/1982", formatter);
+  + 레거시 API 지원
+    + GregorianCalendar와 Date 타입의 인스턴스를 Instant나 ZonedDateTime으로 변환 가능.
+    + java.util.TimeZone에서 java.time.ZoneId로 상호 변환 가능.
+    + ZoneId newZoneAPI = TimeZone.getTimeZone("PST").toZoneId();
+    + TimeZone legacyZoneAPI = TimeZone.getTimeZone(newZoneAPI);
+    + Instant newInstant = new Date().toInstant();
+    + Date legacyInstant = Date.from(newInstant);
