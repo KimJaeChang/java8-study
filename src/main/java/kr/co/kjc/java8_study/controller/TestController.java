@@ -15,10 +15,16 @@ public class TestController {
 
   private final CompletableFutureService completableFutureService;
 
-  @RequestMapping(value = "/{enum_version}/completableFutureService", method = RequestMethod.GET)
-  public BaseResponseDTO<?> completableFuture(@PathVariable("enum_version") EnumServiceVersion enumServiceVersion)
+  @RequestMapping(value = "/{enum_version}/thread", method = RequestMethod.GET)
+  public BaseResponseDTO<?> thread(@PathVariable("enum_version") EnumServiceVersion enumServiceVersion)
       throws InterruptedException {
     completableFutureService.run(enumServiceVersion);
+    return new BaseResponseDTO<>(enumServiceVersion);
+  }
+
+  @RequestMapping(value = "/{enum_version}/executor", method = RequestMethod.GET)
+  public BaseResponseDTO<?> executor(@PathVariable("enum_version") EnumServiceVersion enumServiceVersion) {
+    completableFutureService.executorRun(enumServiceVersion);
     return new BaseResponseDTO<>(enumServiceVersion);
   }
 

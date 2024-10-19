@@ -1,5 +1,9 @@
 package kr.co.kjc.java8_study.service;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import kr.co.kjc.java8_study.enums.EnumServiceVersion;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -73,7 +77,7 @@ public class CompletableFutureService {
   /**
    * 1. Thread가 3초 기다린 후에 실행
    * 2. thread.isAlive()로 상태 확인 후
-   * 3. !thread.isInterruped() : 즉 thread가 종료처리 되지 않았다면 
+   * 3. !thread.isInterruped() : 즉 thread가 종료처리 되지 않았다면
    * 4. thread.interrupt()로 종료
    */
   public void runV4() {
@@ -109,6 +113,67 @@ public class CompletableFutureService {
 
     System.out.println(thread + " is finished");
 
+  }
+
+  public void executorRun(EnumServiceVersion enumServiceVersion) {
+    if(enumServiceVersion == EnumServiceVersion.V1) {
+      executorRunV1();
+    } else if(enumServiceVersion == EnumServiceVersion.V2) {
+      executorRunV2();
+    } else if (enumServiceVersion == EnumServiceVersion.V3) {
+      executorRunV3();
+    }
+  }
+
+  /**
+   * 1. ThreadPool을 2Size 만큼 생성한다.
+   * 2. executorService.submit하면 Thread를 실행시킨다.
+   * 3. 단 ThreadPool을 2Size 만큼 할당했으니 나머지 3개의 Thread는 Blocking Queue 라는 곳에서 대기하며
+   * 먼저 실행이 들어간 Thread가 끝나면 실행됌.
+   * 4-1. shutdown() : 속도는 느리지만, 큐에 등록된 모든 작업이 끝날 때까지 종료시키지 않는다. (gracefyl)
+   * 4-2. shutdownNow() : 응답은 빠르지만, 강제 종료시키며, 아직 실행되지 않은 작업 목록을 리턴. (Thread Pool에 있는 작업이 끝나면 Blocking Queue는 상관하지 않고 종료되는 듯 하다.)
+   */
+  public void executorRunV1() {
+    ExecutorService executorService = Executors.newFixedThreadPool(2);
+    executorService.submit(getRunnable("Hello"));
+    executorService.submit(getRunnable("Keesun"));
+    executorService.submit(getRunnable("The"));
+    executorService.submit(getRunnable("Java"));
+    executorService.submit(getRunnable("Thread"));
+
+    executorService.shutdown();
+  }
+
+  /**
+   * 3초 딜레이 가진 후 ScheduledExecutorService 실행
+   */
+  public void executorRunV2() {
+    ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+    scheduledExecutorService.schedule(getRunnable("Hello"), 3, TimeUnit.SECONDS);
+
+    // 특정 조건으로 shutdown() 필요
+    try {
+      scheduledExecutorService.wait(1000L);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+
+    scheduledExecutorService.shutdown();
+  }
+
+  /**
+   * 1초 딜레이를 가진 후 끝나면 2초 후 ScheduledExecutorService 실행
+   */
+  public void executorRunV3() {
+    ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+    scheduledExecutorService.scheduleWithFixedDelay(getRunnable("Hello"), 1, 2, TimeUnit.SECONDS);
+
+    // 특정 조건으로 shutdown() 필요
+    // scheduledExecutorService.shutdown();
+  }
+
+  private static Runnable getRunnable(String message) {
+    return () -> System.out.println("getRunnable : [" + message + "] : " + Thread.currentThread().getName());
   }
 
   class MyThread extends Thread {
