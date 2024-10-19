@@ -1,9 +1,11 @@
 package kr.co.kjc.java8_study.enums;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 @Getter
 @AllArgsConstructor
 public enum EnumJavaVersion {
