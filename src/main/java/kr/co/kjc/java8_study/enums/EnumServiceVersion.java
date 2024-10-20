@@ -13,6 +13,8 @@ public enum EnumServiceVersion {
   V2(2, "ver[2]"),
   V3(3, "ver[3]"),
   V4(4, "ver[4]"),
+  V5(5, "ver[5]"),
+  V6(6, "ver[6]"),
   ;
 
   private Integer version;

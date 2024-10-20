@@ -28,4 +28,10 @@ public class TestController {
     return new BaseResponseDTO<>(enumServiceVersion);
   }
 
+  @RequestMapping(value = "/{enum_version}/callable", method = RequestMethod.GET)
+  public BaseResponseDTO<?> callable(@PathVariable("enum_version") EnumServiceVersion enumServiceVersion) {
+    completableFutureService.callableRun(enumServiceVersion);
+    return new BaseResponseDTO<>(enumServiceVersion);
+  }
+
 }
