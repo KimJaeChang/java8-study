@@ -2,7 +2,7 @@ package kr.co.kjc.java8_study.service;
 
 import java.util.List;
 import java.util.function.Predicate;
-import kr.co.kjc.java8_study.custom_interface.java_function.PredicateExample;
+import kr.co.kjc.java8_study.global.custom_interface.java_function.PredicateExample;
 import kr.co.kjc.java8_study.global.constants.CommonConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

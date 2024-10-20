@@ -1,7 +1,7 @@
 package kr.co.kjc.java8_study.service;
 
-import kr.co.kjc.java8_study.defalut_and_static.DefaultFoo;
-import kr.co.kjc.java8_study.defalut_and_static.DefaultAndStaticInterface;
+import kr.co.kjc.java8_study.global.defalut_and_static.DefaultFoo;
+import kr.co.kjc.java8_study.global.defalut_and_static.DefaultAndStaticInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

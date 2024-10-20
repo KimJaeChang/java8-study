@@ -1,8 +1,8 @@
 package kr.co.kjc.java8_study.service;
 
 import java.util.function.Function;
-import kr.co.kjc.java8_study.custom_interface.java_function.FunctionMultiply;
-import kr.co.kjc.java8_study.custom_interface.java_function.FunctionPlus;
+import kr.co.kjc.java8_study.global.custom_interface.java_function.FunctionMultiply;
+import kr.co.kjc.java8_study.global.custom_interface.java_function.FunctionPlus;
 import kr.co.kjc.java8_study.global.constants.CommonConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

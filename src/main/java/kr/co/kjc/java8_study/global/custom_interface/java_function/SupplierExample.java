@@ -1,4 +1,4 @@
-package kr.co.kjc.java8_study.custom_interface.java_function;
+package kr.co.kjc.java8_study.global.custom_interface.java_function;
 
 import java.util.function.Supplier;
 import kr.co.kjc.java8_study.global.constants.CommonConstants;

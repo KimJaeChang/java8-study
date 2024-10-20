@@ -1,4 +1,4 @@
-package kr.co.kjc.java8_study.defalut_and_static;
+package kr.co.kjc.java8_study.global.defalut_and_static;
 
 public interface Bar extends DefaultAndStaticInterface {
 

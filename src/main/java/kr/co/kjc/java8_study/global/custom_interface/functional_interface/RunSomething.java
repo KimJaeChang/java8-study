@@ -1,4 +1,4 @@
-package kr.co.kjc.java8_study.custom_interface.functional_interface;
+package kr.co.kjc.java8_study.global.custom_interface.functional_interface;
 
 @FunctionalInterface
 public interface RunSomething {
