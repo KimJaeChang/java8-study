@@ -2,6 +2,7 @@ package kr.co.kjc.java8_study.controller;
 
 import kr.co.kjc.java8_study.dtos.BaseResponseDTO;
 import kr.co.kjc.java8_study.enums.EnumServiceVersion;
+import kr.co.kjc.java8_study.service.AnnotationService;
 import kr.co.kjc.java8_study.service.CompletableFutureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TestController {
 
+  private final AnnotationService annotationService;
   private final CompletableFutureService completableFutureService;
 
   @RequestMapping(value = "/{enum_version}/thread", method = RequestMethod.GET)
@@ -37,6 +39,12 @@ public class TestController {
   @RequestMapping(value = "/{enum_version}/completable-future", method = RequestMethod.GET)
   public BaseResponseDTO<?> completableFuture(@PathVariable("enum_version") EnumServiceVersion enumServiceVersion) {
     completableFutureService.completableFutureRun(enumServiceVersion);
+    return new BaseResponseDTO<>(enumServiceVersion);
+  }
+
+  @RequestMapping(value = "/{enum_version}/annotation", method = RequestMethod.GET)
+  public BaseResponseDTO<?> annotation(@PathVariable("enum_version") EnumServiceVersion enumServiceVersion) {
+    annotationService.run(enumServiceVersion);
     return new BaseResponseDTO<>(enumServiceVersion);
   }
 
