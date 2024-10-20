@@ -302,7 +302,8 @@
     + 현재 쓰레드 멈춰두기 (sleep): 다른 쓰레드가 처리할 수 있도록 기회를 주지만 그렇다고 Lock을 놔주진 않는다. (잘못하면 데드락 걸릴 수 있음.)
     + 다른 쓰레드 깨우기 (interupt): 다른 쓰레드를 깨워서 interruptedExeption을 발생 시킨다.
       + 그 에러가 발생했을 때 할 일은 코딩하기 나름. 종료 시킬 수도 있고 계속 하던 일 할 수도 있고.
-      + <span style="color:red"><U>**CompletableFutureService.runV4()**</U></span> 참고
+      + [참고 Service](https://github.com/KimJaeChang/java8-study/blob/main/src/main/java/kr/co/kjc/java8_study/service/CompletableFutureService.java)
+        + <span style="color:red"><U>**CompletableFutureService.runV4()**</U></span> 참고
     + 다른 쓰레드 기다리기 (join): 다른 쓰레드가 끝날 때까지 기다린다.
 
 # Executors
