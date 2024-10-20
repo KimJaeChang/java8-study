@@ -2,8 +2,8 @@ package kr.co.kjc.java8_study.service;
 
 import java.util.List;
 import java.util.function.Predicate;
-import kr.co.kjc.java8_study.global.config.common.CommonConstant;
 import kr.co.kjc.java8_study.custom_interface.java_function.PredicateExample;
+import kr.co.kjc.java8_study.global.constants.CommonConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PredicateService {
 
-  private static final List<String> LIST = List.of(CommonConstant.NAME);
+  private static final List<String> LIST = List.of(CommonConstants.NAME);
 
   public boolean andV1(String name) {
     Predicate<String> pridicateExample = (s) -> s.startsWith(name);

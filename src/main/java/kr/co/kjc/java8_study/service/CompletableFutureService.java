@@ -4,13 +4,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CancellationException;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import kr.co.kjc.java8_study.enums.EnumServiceVersion;
+import kr.co.kjc.java8_study.global.constants.TextConstants;
+import kr.co.kjc.java8_study.global.utils.CommonUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -382,11 +386,324 @@ public class CompletableFutureService {
     }
   }
 
+  public void completableFutureRun(EnumServiceVersion enumServiceVersion) {
+    if (enumServiceVersion == EnumServiceVersion.V1) {
+      completableFutureRunV1();
+    } else if (enumServiceVersion == EnumServiceVersion.V2) {
+      completableFutureRunV2();
+    } else if (enumServiceVersion == EnumServiceVersion.V3) {
+      completableFutureRunV3();
+    } else if (enumServiceVersion == EnumServiceVersion.V4) {
+      completableFutureRunV4();
+    } else if (enumServiceVersion == EnumServiceVersion.V5) {
+      completableFutureRunV5();
+    } else if (enumServiceVersion == EnumServiceVersion.V6) {
+      completableFutureRunV6();
+    } else if (enumServiceVersion == EnumServiceVersion.V7) {
+      completableFutureRunV7();
+    } else if (enumServiceVersion == EnumServiceVersion.V8) {
+      completableFutureRunV8();
+    } else if (enumServiceVersion == EnumServiceVersion.V9) {
+      completableFutureRunV9();
+    } else if (enumServiceVersion == EnumServiceVersion.V10) {
+      completableFutureRun10();
+    } else if (enumServiceVersion == EnumServiceVersion.V11) {
+      completableFutureRun11();
+    } else if (enumServiceVersion == EnumServiceVersion.V12) {
+      completableFutureRun12();
+    }
+  }
+
+  public void completableFutureRunV1() {
+
+    CompletableFuture<String> future = new CompletableFuture<>();
+    future.complete("Hello");
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  /**
+   * 실행만 필요할 때
+   */
+  public void completableFutureRunV2() {
+
+    CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+    });
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  /**
+   * 콜백으로 return 값이 필요할 때
+   * thenApply()
+   */
+  public void completableFutureRunV3() {
+
+    CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    }).thenApply((s) ->{
+      return s.toUpperCase();
+    });
+
+    try {
+      String s = future.get();
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+s);
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  /**
+   * 콜백으로 run하기만 하면 될 때
+   */
+  public void completableFutureRunV4() {
+
+    CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    }).thenRun(() -> {
+      System.out.println("Hello thenRun : " + Thread.currentThread().getName());
+    });
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  /**
+   * ExecutorService를 매개변수로 이용할 때
+   * *** ExecutorService를 이용하지 않으면 기본적으로 commonPool을 이용한다.
+   * 콜백으로 run하기만 하면 될 때
+   */
+  public void completableFutureRunV5() {
+
+    ExecutorService executorService = Executors.newSingleThreadExecutor();
+//    ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+    CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    }, executorService).thenRunAsync(() -> {
+      System.out.println("Hello thenRun : " + Thread.currentThread().getName());
+    }, executorService);
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public void completableFutureRunV6() {
+
+    CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    });
+
+    // thenCompose() : 두 작업이 서로 이어서 실행하도록 조합
+    CompletableFuture<String> future = hello.thenCompose(CompletableFutureService::getWorld);
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public void completableFutureRunV7() {
+
+    CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    });
+
+    CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> {
+      System.out.println("World : " + Thread.currentThread().getName());
+      return "World";
+    });
+
+    // thenCombine() : 두 작업을 독립적으로 실행하고 둘 다 종료 했을 때 콜백 실행
+    CompletableFuture<String> future = hello.thenCombine(world, (h, w) -> h + " " + w);
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+
+  }
+
+  public void completableFutureRunV8() {
+
+    CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    });
+
+    CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> {
+      System.out.println("World : " + Thread.currentThread().getName());
+      return "World";
+    });
+
+    // allOf() : 여러 작업을 모두 실행하고 모든 작업 결과에 콜백 실행
+    // 기본적으로 사용하면 Void 타입으로 future.get() 사용시 null이 출력된다.
+    CompletableFuture<Void> future = CompletableFuture.allOf(hello, world);
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+
+  }
+
+  public void completableFutureRunV9() {
+
+    CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    });
+
+    CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> {
+      System.out.println("World : " + Thread.currentThread().getName());
+      return "World";
+    });
+
+    // allOf() : 여러 작업을 모두 실행하고 모든 작업 결과에 콜백 실행
+    // 리턴 타입을 사용하기 위해 추가적인 로직이 필요하다. ex) Array
+    List<CompletableFuture<String>> futures = Arrays.asList(hello, world);
+    CompletableFuture[] futuresArray = futures.toArray(new CompletableFuture[futures.size()]);
+
+    // 해당 로직은 Blocking이 되지 않는다.
+    CompletableFuture<List<String>> future = CompletableFuture.allOf(futuresArray)
+        .thenApply((s) -> {
+          return futures.stream()
+              .map(CompletableFuture::join)
+              .collect(Collectors.toList());
+        });
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+
+  }
+
+  public void completableFutureRun10() {
+
+    CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> {
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      try {
+        Thread.sleep(5000L);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+      return "Hello";
+    });
+
+    CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> {
+      System.out.println("World : " + Thread.currentThread().getName());
+      try {
+        Thread.sleep(3000L);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+      return "World";
+    });
+
+    // anyOf() : 여러 작업 중에 가장 빨리 끝난 하나의 결과에 콜백 실행
+    // 현재 상단에 Thread.sleep을 줘서 world가 항상 먼저 실행되어야만 한다.
+    CompletableFuture<Void> future = CompletableFuture.anyOf(hello, world)
+        .thenAccept((t) -> System.out.println("가장 먼저 끝낸 future : " + t));
+
+    try {
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+future.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+
+  }
+
+  public void completableFutureRun11() {
+
+    boolean throwError = true; // 에러를 발생시키면 exceptionally 메소드를 실행시킨다.
+//    boolean throwError = false; // 에러를 발생시키기지 않으면 exceptionally 메소드를 실행시키지 않고 넘어간다.
+
+    CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> {
+      if(throwError) {
+        throw new IllegalArgumentException();
+      }
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    }).exceptionally(ex -> {
+      System.out.println("에러 발생 : " + ex);
+      return "Error!";
+    });
+
+    try {
+      // 상단에서 예외가 발생되었으니 get()이 실행되지 않는다.
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+hello.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public void completableFutureRun12() {
+
+//    boolean throwError = true; // 에러를 발생시키든, 정상적인 Case든 둘 다 handle() 메소드를 실행시킨다.
+    boolean throwError = false; // 에러를 발생시키든, 정상적인 Case든 둘 다 handle() 메소드를 실행시킨다.
+
+    CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> {
+      if(throwError) {
+        throw new IllegalArgumentException();
+      }
+      System.out.println("Hello : " + Thread.currentThread().getName());
+      return "Hello";
+    }).handle((result, ex) -> {
+      if(ex != null) {
+        System.out.println("에러 발생 : " + ex);
+        return "Error!";
+      }
+
+      return result;
+    });
+
+    try {
+      // 만약에 상단에서 예외가 발생되면 get()이 실행되지 않는다.
+      // 정상적인 Case에선 get()이 실행된다.
+      System.out.println(TextConstants.LOGGING_METHOD_FORMAT+hello.get());
+    } catch (InterruptedException | ExecutionException e) {
+      throw new RuntimeException(e);
+    }
+
+  }
+
   private static Runnable getRunnable(String message) {
     return () -> System.out.println("getRunnable : [" + message + "] : " + Thread.currentThread().getName());
   }
 
-  class MyThread extends Thread {
+  private static CompletableFuture<String> getWorld(String message) {
+    return CompletableFuture.supplyAsync(() -> {
+      System.out.println("World : " + Thread.currentThread().getName());
+      return message + " World";
+    });
+  }
+
+  static class MyThread extends Thread {
 
     @Override
     public void run() {

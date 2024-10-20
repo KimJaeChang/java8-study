@@ -1,13 +1,13 @@
 package kr.co.kjc.java8_study.custom_interface.java_function;
 
 import java.util.function.Predicate;
-import kr.co.kjc.java8_study.global.config.common.CommonConstant;
+import kr.co.kjc.java8_study.global.constants.CommonConstants;
 
 public class PredicateExample implements Predicate<String> {
 
   @Override
   public boolean test(String s) {
-    return s.startsWith(CommonConstant.START_WITH_NAME);
+    return s.startsWith(CommonConstants.START_WITH_NAME);
   }
 
   @Override

@@ -1,9 +1,9 @@
 package kr.co.kjc.java8_study.service;
 
 import java.util.function.UnaryOperator;
-import kr.co.kjc.java8_study.global.config.common.CommonConstant;
 import kr.co.kjc.java8_study.custom_interface.java_function.UnaryOperatorMultiply;
 import kr.co.kjc.java8_study.custom_interface.java_function.UnaryOperatorPlus;
+import kr.co.kjc.java8_study.global.constants.CommonConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,8 @@ public class UnaryOperatorService {
    * @param num
    */
   public Integer andThenV1(Integer num) {
-    UnaryOperator<Integer> plus = (i) -> i + CommonConstant.PLUS;
-    UnaryOperator<Integer> multiply = (i) -> i * CommonConstant.MULTIPLY;
+    UnaryOperator<Integer> plus = (i) -> i + CommonConstants.PLUS;
+    UnaryOperator<Integer> multiply = (i) -> i * CommonConstants.MULTIPLY;
 
     Integer result = plus.andThen(multiply).apply(num);
 

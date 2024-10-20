@@ -57,4 +57,9 @@ public class CommonConstants {
 
   public static final String ADMIN_UUID = "bc5e4e1f-56fc-4113-a5db-c692683a68ec";
 
+  public static final Integer PLUS = 10;
+  public static final Integer MULTIPLY = 2;
+  public static final String NAME = "KimJaeChang";
+  public static final String START_WITH_NAME = "Kim";
+
 }

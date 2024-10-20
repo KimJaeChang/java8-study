@@ -1,13 +1,13 @@
 package kr.co.kjc.java8_study.custom_interface.java_function;
 
 import java.util.function.Function;
-import kr.co.kjc.java8_study.global.config.common.CommonConstant;
+import kr.co.kjc.java8_study.global.constants.CommonConstants;
 
 public class FunctionMultiply implements Function<Integer, Integer> {
 
   @Override
   public Integer apply(Integer integer) {
-    return integer * CommonConstant.MULTIPLY;
+    return integer * CommonConstants.MULTIPLY;
   }
 
   @Override

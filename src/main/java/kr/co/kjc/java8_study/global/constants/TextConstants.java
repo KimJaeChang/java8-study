@@ -1,5 +1,7 @@
 package kr.co.kjc.java8_study.global.constants;
 
+import kr.co.kjc.java8_study.global.utils.CommonUtils;
+
 /**
  * 텍스트 메시지에 관한 상수 모음
  */
@@ -22,4 +24,6 @@ public class TextConstants {
       {}
       [RESPONSE] {}
       """;
+
+  public static final String LOGGING_METHOD_FORMAT = CommonUtils.getCurrentMethodName() + " : ";
 }

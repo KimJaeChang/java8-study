@@ -1,9 +1,9 @@
 package kr.co.kjc.java8_study.service;
 
 import java.util.function.Function;
-import kr.co.kjc.java8_study.global.config.common.CommonConstant;
 import kr.co.kjc.java8_study.custom_interface.java_function.FunctionMultiply;
 import kr.co.kjc.java8_study.custom_interface.java_function.FunctionPlus;
+import kr.co.kjc.java8_study.global.constants.CommonConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +20,8 @@ public class FunctionService {
    * @return
    */
   public Integer composeV1(Integer num) {
-    Function<Integer, Integer> plus = (i) -> i + CommonConstant.PLUS;
-    Function<Integer, Integer> multiply = (i) -> i * CommonConstant.MULTIPLY;
+    Function<Integer, Integer> plus = (i) -> i + CommonConstants.PLUS;
+    Function<Integer, Integer> multiply = (i) -> i * CommonConstants.MULTIPLY;
 
     Function<Integer, Integer> multiplyAndPlus = plus.compose(multiply);
 
@@ -46,8 +46,8 @@ public class FunctionService {
   }
 
   public Integer composeFail(Integer num) {
-    Function<Integer, Integer> plus = (i) -> num + CommonConstant.PLUS;
-    Function<Integer, Integer> multiply = (i) -> num * CommonConstant.MULTIPLY;
+    Function<Integer, Integer> plus = (i) -> num + CommonConstants.PLUS;
+    Function<Integer, Integer> multiply = (i) -> num * CommonConstants.MULTIPLY;
 
     System.out.println("plus10 : " + plus.apply(3));
     System.out.println("multiply : " + multiply.apply(5));
@@ -70,8 +70,8 @@ public class FunctionService {
    * @return
    */
   public Integer andThenV1(Integer num) {
-    Function<Integer, Integer> plus = (i) -> i + CommonConstant.PLUS;
-    Function<Integer, Integer> multiply = (i) -> i * CommonConstant.MULTIPLY;
+    Function<Integer, Integer> plus = (i) -> i + CommonConstants.PLUS;
+    Function<Integer, Integer> multiply = (i) -> i * CommonConstants.MULTIPLY;
 
     Function<Integer, Integer> multiplyAndPlus = plus.andThen(multiply);
 

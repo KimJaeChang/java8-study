@@ -34,4 +34,10 @@ public class TestController {
     return new BaseResponseDTO<>(enumServiceVersion);
   }
 
+  @RequestMapping(value = "/{enum_version}/completable-future", method = RequestMethod.GET)
+  public BaseResponseDTO<?> completableFuture(@PathVariable("enum_version") EnumServiceVersion enumServiceVersion) {
+    completableFutureService.completableFutureRun(enumServiceVersion);
+    return new BaseResponseDTO<>(enumServiceVersion);
+  }
+
 }

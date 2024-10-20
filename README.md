@@ -1,23 +1,22 @@
-+ # 더 자바 8
-+ ### 함수형 인터페이스와 람다 표현식 1
-    + 함수형 인터페이스 (Functional Interface)
-        + 추상 메소드를 딱 하나만 가지고 있는 인터페이스
-        + SAM (Single Abstract Method) 인터페이스
-        + @FunctionalInterface 애노테이션을 가지고 있는 인터페이스
-    + 람다 표현식 (Lambda Expressions)
-      + 함수형 인터페이스의 인스턴스를 만드는 방법으로 쓰일 수 있다.
-      + 코드를 줄일 수 있다.
-      + 메소드 매개변수, 리턴 타입, 변수로 만들어 사용할 수도 있다.
-    + 자바에서 함수형 프로그래밍
-      + 함수를 First class object로 사용할 수 있다.
-      + 순수 함수 (Pure function)
-        + 사이드 이펙트 만들 수 없다. (함수 밖에 있는 값을 변경하지 못한다.)
-        + 상태가 없다. (함수 밖에 정의되어 있는)
-      + 고차 함수 (Higher-Order Function)
-        + 함수가 함수를 매개변수로 받을 수 있고 함수를 리턴할 수도 있다.
-      + 불변성
-      
-+ ### 함수형 인터페이스와 람다 표현식 2
+# 함수형 인터페이스와 람다 표현식 1
+  + 함수형 인터페이스 (Functional Interface)
+    + 추상 메소드를 딱 하나만 가지고 있는 인터페이스
+    + SAM (Single Abstract Method) 인터페이스
+    + @FunctionalInterface 애노테이션을 가지고 있는 인터페이스
+  + 람다 표현식 (Lambda Expressions)
+    + 함수형 인터페이스의 인스턴스를 만드는 방법으로 쓰일 수 있다.
+    + 코드를 줄일 수 있다.
+    + 메소드 매개변수, 리턴 타입, 변수로 만들어 사용할 수도 있다.
+  + 자바에서 함수형 프로그래밍
+    + 함수를 First class object로 사용할 수 있다.
+    + 순수 함수 (Pure function)
+      + 사이드 이펙트 만들 수 없다. (함수 밖에 있는 값을 변경하지 못한다.)
+      + 상태가 없다. (함수 밖에 정의되어 있는)
+    + 고차 함수 (Higher-Order Function)
+      + 함수가 함수를 매개변수로 받을 수 있고 함수를 리턴할 수도 있다.
+    + 불변성
+
+# 함수형 인터페이스와 람다 표현식 2
   + Java가 기본으로 제공하는 함수형 인터페이스
     + <U>**java.lang.function**</U> 패키지
     + 자바에서 미리 정의해둔 자주 사용할만한 함수 인터페이스
@@ -50,7 +49,7 @@
       + BinaryOperator<T>
         + BiFunction<T, U, R>의 특수한 형태로, 동일한 타입의 입력값 두개를 받알 리턴하는 함수 인터페이스
 
-+ ### 람다 표현식
+# 람다 표현식
   + 람다
     + (인자 리스트) -> {바디}
   + 인자 리스트
@@ -72,7 +71,7 @@
     + 익명 클래스 구현체와 달리 ‘쉐도윙’하지 않는다. -> <U>**ShadowService.class 참고**</U>
     + 익명 클래스는 새로 스콥을 만들지만, 람다는 람다를 감싸고 있는 스콥과 같다.
 
-+ ### 메소드 레퍼런스
+# 메소드 레퍼런스
   + 람다가 하는 일이 기존 메소드 또는 생성자를 호출하는 거라면, 메소드 레퍼런스를 사용해서 매우 간결하게 표현할 수 있다.
   + 메소드 참조하는 방법
     + > 스태틱 메소드 참조 타입::스태틱 메소드
@@ -82,7 +81,7 @@
   + 메소드 또는 생성자의 매개변수로 람다의 입력값을 받는다.
   + 리턴값 또는 생성한 객체는 람다의 리턴값이다.
 
-+ ### 인터페이스 기본 메소드와 스태틱 메소드
+# 인터페이스 기본 메소드와 스태틱 메소드
   + 기본 메소드 (Default Methods)
     + 인터페이스에 메소드 선언이 아니라 구현체를 제공하는 방법
     + 해당 인터페이스를 구현한 클래스를 깨트리지 않고 새 기능을 추가할 수 있다.
@@ -102,7 +101,7 @@
   + 스태틱 메소드 (Static Methods)
     + 해당 타입 관련 헬터 또는 유틸리티 메소드를 제공할 때 인터페이스에 스태틱 메소드를 제공할 수 있다.
 
-+ ### 자바 8 API의 기본 메소드와 스태틱 메소드
+# 자바 8 API의 기본 메소드와 스태틱 메소드
   + 자바 8에서 추가한 기본 메소드로 인한 API 변화
   
   + Iterable의 기본 메소드
@@ -119,7 +118,7 @@
     + static nullsFirst() / nullsLast()
     + static comparing()
 
-+ ### Stream
+# Stream
   + Stream 소개
     + sequence of elements supporting sequential and parallel aggregate operations
     + 데이터를 담고 있는 저장소 (컬렉션)이 아니다.
@@ -140,7 +139,7 @@
     + Stream을 리턴하지 않는다.
     + collect, allMatch, count, forEach, min, max, ...
 
-+ ### Stream API
+# Stream API
   + 걸러내기
     + Filter(Predicate)
     + 예) 이름이 3글자 이상인 데이터만 새로운 스트림으로 
@@ -168,7 +167,7 @@
     + 예) 모든 숫자 합 구하기
     + 예) 모든 데이터를 하나의 List 또는 Set에 옮겨 담기
 
-### Optional
+# Optional
   + 자바 프로그래밍에서 NullPointerException을 종종 보게 되는 이유
     + null을 리턴하니까! && null 체크를 깜빡했으니까!
   + 메소드에서 작업 중 특별한 상황에서 값을 제대로 리턴할 수 없는 경우 선택할 수 있는 방법
@@ -185,7 +184,7 @@
       + Primitive 타입용 Optional을 따로 있다. OptionalInt, OptionalLong,...
       + Collection, Map, Stream Array, Optional은 Optional로 감싸지 말 것
 
-### Optional API
+# Optional API
   + Optional 만들기
     + Optional.of()
     + Optional.ofNullable()
@@ -213,7 +212,7 @@
   + Optional map(Function)
   + Optional flatMap(Function): Optional 안에 들어있는 인스턴스가 Optional인 경우에 사용하면 편리하다.
 
-### Date와 Time API - 1
+# Date와 Time API - 1
   + 자바 8에 새로운 날짜와 시간 API가 생긴 이유
     + 그전까지 사용하던 java.util.Date 클래스는 mutable 하기 때문에 thread safe하지 않다.
     + 클래스 이름이 명확하지 않다. Date인데 시간까지 다룬다.
@@ -238,7 +237,7 @@
     + 참고
       + https://codeblog.jonskeet.uk/2017/04/23/all-about-java-util-date/
       
-### Date와 Time API - 2
+# Date와 Time API - 2
   + 지금 이 순간을 기계 시간으로 표현하는 방법
     + Instant.now(): 
     + Universal Time Coordinated == Greenwich Mean Time
@@ -271,7 +270,7 @@
     + Instant newInstant = new Date().toInstant();
     + Date legacyInstant = Date.from(newInstant);
 
-### CompletableFuture
+# CompletableFuture
   + 자바 Concurrent 프로그래밍 소개
     + Concurrent 소프트웨어
     + 동시에 여러 작업을 할 수 있는 소프트웨어
@@ -306,7 +305,7 @@
       + <span style="color:red"><U>**CompletableFutureService.runV4()**</U></span> 참고
     + 다른 쓰레드 기다리기 (join): 다른 쓰레드가 끝날 때까지 기다린다.
 
-### Executors
+# Executors
   + 고수준 (High-Level) Concurrency 프로그래밍
     + 쓰레드를 만들고 관리하는 작업을 애플리케이션에서 분리.
     + 그런 기능을 Executors에게 위임.
@@ -330,10 +329,10 @@
   + Fork/Join 프레임워크
   + ExecutorService의 구현체로 손쉽게 멀티 프로세서를 활용할 수 있게끔 도와준다.
 
-### Callable과 Future
-  + Callable
+# Callable과 Future
+  + ## Callable
     + Runnable과 유사하지만 작업의 결과를 받을 수 있다.
-  + Future
+  + ## Future
     + 비동기적인 작업의 현재 상태를 조회하거나 결과를 가져올 수 있다.
       + https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html
     + 결과를 가져오기 get()
@@ -349,3 +348,36 @@
     + 여러 작업 중에 하나라도 먼저 응답이 오면 끝내기 invokeAny()
       + 동시에 실행한 작업 중에 제일 짧게 걸리는 작업 만큼 시간이 걸린다.
       + 블록킹 콜이다.
+  + ## CompletableFuture
+    + 자바에서 비동기(Asynchronous) 프로그래밍을 가능케하는 인터페이스.
+      + Future를 사용해서도 어느정도 가능했지만 하기 힘들 일들이 많았다.
+    + Future로는 하기 어렵던 작업들
+      + Future를 외부에서 완료 시킬 수 없다. 취소하거나, get()에 타임아웃을 설정할 수는 있다.
+      + 블로킹 코드(get())를 사용하지 않고서는 작업이 끝났을 때 콜백을 실행할 수 없다.
+      + 여러 Future를 조합할 수 없다, 예) Event 정보 가져온 다음 Event에 참석하는 회원 목록 가져오기
+      + 예외 처리용 API를 제공하지 않는다.
+    + CompletableFuture
+      + Implements Future
+      + Implements CompletionStage
+    + 비동기로 작업 실행하기
+      + 리턴값이 없는 경우: runAsync()
+      + 리턴값이 있는 경우: supplyAsync()
+      + 원하는 Executor(쓰레드풀)를 사용해서 실행할 수도 있다. (기본은 ForkJoinPool.commonPool())
+    + 콜백 제공하기
+      + thenApply(Function): 리턴값을 받아서 다른 값으로 바꾸는 콜백
+      + thenAccept(Consumer): 리턴값을 또 다른 작업을 처리하는 콜백 (리턴없이)
+      + thenRun(Runnable): 리턴값 받지 않고 다른 작업을 처리하는 콜백
+      + 콜백 자체를 또 다른 쓰레드에서 실행할 수 있다.
+    + 조합하기
+      + thenCompose(): 두 작업이 서로 이어서 실행하도록 조합
+      + thenCombine(): 두 작업을 독립적으로 실행하고 둘 다 종료 했을 때 콜백 실행
+      + allOf(): 여러 작업을 모두 실행하고 모든 작업 결과에 콜백 실행
+      + anyOf(): 여러 작업 중에 가장 빨리 끝난 하나의 결과에 콜백 실행
+    + 결과 가져오기
+      + get(): Future 인터페이스에 정의된 메소드로 checked exception인 
+                InterruptedException과 ExecutionException을 던지므로 예외 처리 로직이 반드시 필요하다.
+      + join(): CompletableFuture에 정의되어 있으며, checked exception을 발생시키지 않는 대신
+                 unchecked CompletionException이 발생된다.
+    + 예외처리
+      + exeptionally(Function): 예외가 발생할 때만 실행한다
+      + handle(BiFunction): 정상적으로 종료되었을 때나, 예외가 발생할 때 둘 다 사용할 수 있다

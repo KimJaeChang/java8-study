@@ -8,11 +8,12 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-public class WebMvcConfig implements WebMvcConfigurer {
+public class CommonWebMvcConfig implements WebMvcConfigurer {
 
   private final static List<String> LOG_EXCLUDES = List.of("/css/**", "/*.ico", "/error",
       "/error-page/**", "/swagger-ui/**");
@@ -27,7 +28,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
   @Override
   public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-
+    WebMvcConfigurer.super.addArgumentResolvers(resolvers);
   }
 
   @Override

@@ -1,8 +1,8 @@
 package kr.co.kjc.java8_study.service;
 
 import java.util.function.Supplier;
-import kr.co.kjc.java8_study.global.config.common.CommonConstant;
 import kr.co.kjc.java8_study.custom_interface.java_function.SupplierExample;
+import kr.co.kjc.java8_study.global.constants.CommonConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class SupplierService {
    * @return
    */
   public Integer getV1() {
-    Supplier<Integer> supplierExample = () -> CommonConstant.PLUS;
+    Supplier<Integer> supplierExample = () -> CommonConstants.PLUS;
     return supplierExample.get();
   }
 
